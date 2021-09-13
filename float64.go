@@ -20,12 +20,9 @@ func (n Float) MarshalJSON() ([]byte, error) {
 
 // Scan calls sql.NullFloat64 Scan method that implements the Scanner interface.
 func (n *Float) Scan(value interface{}) error {
-	var sqlNT sql.NullFloat64
-	err := sqlNT.Scan(value)
+	err := n.N.Scan(value)
 	if err != nil {
 		return err
 	}
-	n.N.Float64 = sqlNT.Float64
-	n.N.Valid = sqlNT.Valid
 	return nil
 }

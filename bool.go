@@ -20,12 +20,9 @@ func (n Bool) MarshalJSON() ([]byte, error) {
 
 // Scan calls sql.NullBool Scan method that implements the Scanner interface.
 func (n *Bool) Scan(value interface{}) error {
-	var sqlNT sql.NullBool
-	err := sqlNT.Scan(value)
+	err := n.N.Scan(value)
 	if err != nil {
 		return err
 	}
-	n.N.Bool = sqlNT.Bool
-	n.N.Valid = sqlNT.Valid
 	return nil
 }

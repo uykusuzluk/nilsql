@@ -20,12 +20,9 @@ func (n Time) MarshalJSON() ([]byte, error) {
 
 // Scan calls sql.Nulltime Scan method that implements the Scanner interface.
 func (n *Time) Scan(value interface{}) error {
-	var sqlNT sql.NullTime
-	err := sqlNT.Scan(value)
+	err := n.N.Scan(value)
 	if err != nil {
 		return err
 	}
-	n.N.Time = sqlNT.Time
-	n.N.Valid = sqlNT.Valid
 	return nil
 }
